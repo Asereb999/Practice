@@ -23,9 +23,11 @@ items = [
 
 
 def home(request):
-    text = f"""<h1>{head}</h1>
-              <strong>{row}</strong>: <i>{my_name}</i>"""
-    return HttpResponse(text)
+    context = {
+        "name": "Петров Николай Иванович",
+        "email": "my_mail@mail.ru" 
+    }
+    return render(request, "index.html", context)
 
 def about(request):
     result = f"""Имя : <b>{author["name"]}</b><br> 
@@ -63,4 +65,10 @@ def items_list(request):
     result += "</ol>"
     return HttpResponse(result)
 
+def items_list2(request):
+    context = {
+        "items": items
+    }
+    # Аргументы render: Запрос(request), Имя файла-шаблона, Контекст(Чем заполняем)
+    return render(request, "item-list.html", context)
 
