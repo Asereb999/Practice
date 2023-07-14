@@ -54,6 +54,18 @@ def get_item(request, id):
             """
             return HttpResponse(result)
     return HttpResponseNotFound(f'Item with id = {id} not found')
+
+
+def get_itemm(request, id):
+    """ По указанному id функция возвращает имя и количество"""
+    for item in items:
+        if  item["id"] == id:
+            context = {
+                "item": item
+            }
+            return render(request, "item-page.html", context)
+
+
 #<ol>
 #   <li> .... </li>
 
